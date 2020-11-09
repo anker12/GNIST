@@ -56,6 +56,7 @@ public class Controller {
         return "indexWrongPW";
     }
 
+    //TODO fix
     @GetMapping("/obFillAll")
     public String createFillAll(){
         return "opret-bruger";
