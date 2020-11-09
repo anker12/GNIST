@@ -1,0 +1,109 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+.login-div{
+    margin:75px auto;
+    width: 400px;
+    background-color: white;
+    padding:60px;
+    border: 1px solid #5F6D7A;
+}
+.createU-div{
+    margin:75px auto;
+    width: 800px;
+    background-color: white;
+    padding:40px 60px;
+    border: 1px solid #5F6D7A;
+}
+.logo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.logo img{
+    width: 100%;
+}
+.title,.sub-title{
+    text-align: center;
+    color:#505050;
+
+}
+.title{
+    font-weight: bolder;
+    font-size:35px;
+}
+.sub-title{
+    font-size: 18px;
+}
+.regform-title{
+    text-align: left;
+    color:#505050;
+    font-size: 18px;
+}
+.form{
+    width: 100%;
+    margin-top:30px;
+}
+.form input{
+    font-size:18px;
+    padding: 10px 20px 10px 10px;
+    border:none;
+    outline: none;
+    background: none;
+
+}
+.username,.password{
+    display:block;
+    border-bottom: 1px solid #505050;
+    padding:10px 10px 0;
+    margin:10px 0;
+}
+.form svg{
+    height: 25px;
+    margin-bottom: -5px;
+    margin-left:10px;
+    margin-right: 5px;
+}
+.formbar{
+    width:600px;
+}
+.select-gender{
+    text-align: left;
+    color:#505050;
+    font-size: 18px;
+    margin: 10px 20px 10px 10px;
+}
+.signin-btn{
+    width:100%;
+    padding: 12px 10px;
+    font-size: 20px;
+    margin-bottom: 5px;
+    background-color: #E7745B;
+    border: 1px solid #C6C6C6;
+    font-weight: bold;
+    color:#505050;
+
+}
+.sign-up{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color:#505050;
+}
+
+
+#registration-form{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 30px;
+    border:solid;
+    border: 1px solid;
+    height: auto;
+    align-content: center;
+    text-align: center;
+}

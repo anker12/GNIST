@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret dig hos GNIST</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #778899">
+
+    <div class="createU-div">
+        <a href="/" style="text-decoration: none; color: #505050;"><p class="regform-title">< Tilbage til login</p></a>
+        <div class="logo">
+            <img src="../static/images/gnistlogov2.png" th:src="@{images/gnistlogov2.png}" alt="GNIST logo"/>
+        </div>
+
+        <div class="title">GNIST</div>
+
+        <div class="sub-title" style="font-size:30px;">Opret en bruger</div>
+
+        <form class="form" action="/createUser">
+
+            <!-- USERNAME -->
+            <div class="username">
+                <p class="regform-title">Skriv dit username: </p>
+                <input type="text" placeholder="Username" id="username" name="username" class="formbar">
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="password">
+                <p class="regform-title">Skriv dit password: </p>
+                <input type="password" placeholder="Password" id="password" name="password" class="formbar">
+            </div>
+
+            <!-- RE PASSWORD -->
+            <div class="password">
+                <p class="regform-title">Skriv dit password igen: </p>
+                <input type="password" placeholder="Password" id="passwordre" name="passwordre" class="formbar">
+            </div>
+
+            <!-- FIRST NAME -->
+            <div class="username">
+                <p class="regform-title">Skriv dit fornavn: </p>
+                <input type="text" placeholder="Fornavn" name="firstName" class="formbar">
+            </div>
+
+            <!-- LAST NAME -->
+            <div class="username">
+                <p class="regform-title">Skriv dit efternavn: </p>
+                <input type="text" placeholder="Efternavn" name="lastName" class="formbar">
+            </div>
+
+            <!-- BIRTHDATE -->
+            <div class="username" style="border:none;">
+                <label for="birthday" class="regform-title">Fødselsdato: </label>
+                <input type="date" id="birthday" name="birthdate" value="0000-12-24" style="color:#505050;font-size: 18px; font-family: Lato;">
+            </div>
+
+            <!-- GENDER -->
+            <div class="username" style="border: none;">
+                <label for="gender-select" class="regform-title">Vælg dit køn: </label>
+                <select name="gender" id="gender-select" class="select-gender">
+                    <option value="" disabled selected hidden>Vælg her</option>
+                    <option value="male">Mand</option>
+                    <option value="female">Kvinde</option>
+                </select>
+            </div>
+
+            <!-- PREFERED GENDER -->
+            <div class="username" style="border: none;">
+                <label for="gender-preference-select" class="regform-title">Vælg hvilke(t) køn du leder efter: </label>
+                <select name="genderPreference" id="gender-preference-select" class="select-gender">
+                    <option value="" disabled selected hidden>Vælg her</option>
+                    <option value="male">Mænd</option>
+                    <option value="female">Kvinder</option>
+                    <option value="both">Begge</option>
+                </select>
+            </div>
+            <button class="signin-btn" type="submit">OPRET</button>
+
+
+        </form>
+
+    </div>
+
+</body>
+</html>
