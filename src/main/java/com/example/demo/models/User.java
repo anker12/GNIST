@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class User {
@@ -16,6 +17,7 @@ public class User {
     private String interestOne;
     private String interestTwo;
     private String interestThree;
+    private Blob image;
 
 
     public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree) {
@@ -43,6 +45,14 @@ public class User {
                 ", gender='" + gender +
                 ", preference='" + genderPreference;
 
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     public String getPhonenumber() {

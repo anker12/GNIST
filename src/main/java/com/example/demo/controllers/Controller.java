@@ -5,14 +5,24 @@ import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.Login;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -46,9 +56,15 @@ public class Controller {
             return "redirect:/";
         }
         else {
-            System.out.println(whosLoggedIn.getFirstName());
+            System.out.println(whosLoggedIn.getUsername());
+            System.out.println(whosLoggedIn.getImage());
             return "loggedin";
         }
+    }
+    @GetMapping("/profil")
+    public String profil(){
+
+        return "profil";
     }
 
 
@@ -60,13 +76,10 @@ public class Controller {
     }
 
     //TODO fix
-    @GetMapping("/obFillAll")
-    public String createFillAll(){
-        return "opret-bruger";
-    }
+
     @GetMapping("/obPWNotMatching")
     public String createPWNotMatching(){
-        return "opret-bruger";
+        return "redirect:/opret";
     }
 
     // "functions"
@@ -90,7 +103,7 @@ public class Controller {
 
     //create user
     @GetMapping("/createUser")
-    public String createUser(WebRequest dataFromForm) throws ParseException {
+    public String createUser(WebRequest dataFromForm) throws ParseException, FileNotFoundException {
         String username = dataFromForm.getParameter("username");
         String password = dataFromForm.getParameter("password");
         String passwordre = dataFromForm.getParameter("passwordre");
@@ -110,12 +123,24 @@ public class Controller {
         String interestTwo = dataFromForm.getParameter("interest2");
         String interestThree = dataFromForm.getParameter("interest3");
 
+
         assert password != null;
 
         //String tmpRtnStr = users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference);
         //System.out.println(tmpRtnStr);
         return users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference, phonenumber,comment,interestOne,interestTwo,interestThree);
     }
+
+    @PostMapping("/uploadBillede")
+    public String uploadPhoto(@RequestParam("img") MultipartFile img) throws IOException, SQLException {
+        byte[] fileAsBytes = img.getBytes();
+        Blob fileAsBlob = new SerialBlob(fileAsBytes);
+
+
+        return users.uploadPhotoToDatabase(fileAsBlob,whosLoggedIn.getUsername());
+    }
+
+
 
 
 

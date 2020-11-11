@@ -25,43 +25,43 @@
             <!-- USERNAME -->
             <div class="username">
                 <p class="regform-title">Skriv dit username: </p>
-                <input type="text" placeholder="Username" id="username" name="username" class="formbar">
+                <input type="text" placeholder="Username" id="username" name="username" class="formbar" required>
             </div>
 
             <!-- PASSWORD -->
             <div class="password">
                 <p class="regform-title">Skriv dit password: </p>
-                <input type="password" placeholder="Password" id="password" name="password" class="formbar">
+                <input type="password" placeholder="Password" id="password" name="password" class="formbar" required>
             </div>
 
             <!-- RE PASSWORD -->
             <div class="password">
                 <p class="regform-title">Skriv dit password igen: </p>
-                <input type="password" placeholder="Password" id="passwordre" name="passwordre" class="formbar">
+                <input type="password" placeholder="Password" id="passwordre" name="passwordre" class="formbar" required>
             </div>
 
             <!-- FIRST NAME -->
             <div class="username">
                 <p class="regform-title">Skriv dit fornavn: </p>
-                <input type="text" placeholder="Fornavn" name="firstName" class="formbar">
+                <input type="text" placeholder="Fornavn" name="firstName" class="formbar" required>
             </div>
 
             <!-- LAST NAME -->
             <div class="username">
                 <p class="regform-title">Skriv dit efternavn: </p>
-                <input type="text" placeholder="Efternavn" name="lastName" class="formbar">
+                <input type="text" placeholder="Efternavn" name="lastName" class="formbar" required>
             </div>
 
             <!-- BIRTHDATE -->
             <div class="username" style="border:none;">
                 <label for="birthday" class="regform-title">Fødselsdato: </label>
-                <input type="date" id="birthday" name="birthdate" value="0000-12-24" style="color:#505050;font-size: 18px; font-family: Lato;">
+                <input type="date" id="birthday" name="birthdate" value="0000-12-24" style="color:#505050;font-size: 18px; font-family: Lato;" required>
             </div>
 
             <!-- GENDER -->
             <div class="username" style="border: none;">
                 <label for="gender-select" class="regform-title">Vælg dit køn: </label>
-                <select name="gender" id="gender-select" class="select-gender">
+                <select name="gender" id="gender-select" class="select-gender" required>
                     <option value="" disabled selected hidden>Vælg her</option>
                     <option value="male">Mand</option>
                     <option value="female">Kvinde</option>
@@ -71,7 +71,7 @@
             <!-- PREFERED GENDER -->
             <div class="username" style="border: none;">
                 <label for="gender-preference-select" class="regform-title">Vælg hvilke(t) køn du leder efter: </label>
-                <select name="genderPreference" id="gender-preference-select" class="select-gender">
+                <select name="genderPreference" id="gender-preference-select" class="select-gender" required>
                     <option value="" disabled selected hidden>Vælg her</option>
                     <option value="male">Mænd</option>
                     <option value="female">Kvinder</option>
@@ -82,7 +82,7 @@
             <!-- PHONE NUMBER -->
             <div class="username">
                 <p class="regform-title">Skriv dit telefon nummer: </p>
-                <input type="text" placeholder="Tlf.nr." name="phonenumber" class="formbar">
+                <input type="text" placeholder="Tlf.nr." name="phonenumber" class="formbar" required>
             </div>
 
             <!-- Comment -->
@@ -94,7 +94,7 @@
             <!-- Interest 1 -->
             <div class="username" style="border: none;">
                 <label for="interest1" class="regform-title">Hvad vil du helst på en regnvejrsdag? </label>
-                <select name="interest1" id="interest1" class="select-gender">
+                <select name="interest1" id="interest1" class="select-gender" required>
                     <option value="" disabled selected hidden>Vælg her</option>
                     <option value="1">På med regntøjet og gå en tur</option>
                     <option value="2">Brætspil i pyjamas</option>
@@ -105,7 +105,7 @@
             <!-- Interest 2 -->
             <div class="username" style="border: none;">
                 <label for="interest2" class="regform-title">Hvor vil du helst holde din ferie? </label>
-                <select name="interest2" id="interest2" class="select-gender">
+                <select name="interest2" id="interest2" class="select-gender" required>
                     <option value="" disabled selected hidden>Vælg her</option>
                     <option value="1">På museer rundt i verdenen</option>
                     <option value="2">På stranden</option>
@@ -116,13 +116,22 @@
             <!-- Interest 3 -->
             <div class="username" style="border: none;">
                 <label for="interest3" class="regform-title">Hvad er din "go to" en fredag aften? </label>
-                <select name="interest3" id="interest3" class="select-gender">
+                <select name="interest3" id="interest3" class="select-gender" required>
                     <option value="" disabled selected hidden>Vælg her</option>
                     <option value="1">I byen og feste</option>
                     <option value="2">Rolig aften foran tv'et</option>
                     <option value="3">Hyggelig middag med venner/familie</option>
                 </select>
             </div>
+
+            <!-- PHOTO -->
+            <!--
+            <div class="username" style="border: none">
+                <label for="img" class="regform-title">Vælg dit bedste billede: </label>
+                <input type="file" id="img" name="img" accept="image/*">
+
+            </div>
+            -->
 
 
             <button class="signin-btn" type="submit">OPRET</button>
