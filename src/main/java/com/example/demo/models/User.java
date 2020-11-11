@@ -2,7 +2,16 @@ package com.example.demo.models;
 
 
 import java.sql.Blob;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.SimpleTimeZone;
 
 public class User {
     private String firstName;
@@ -18,6 +27,7 @@ public class User {
     private String interestTwo;
     private String interestThree;
     private Blob image;
+    private long age;
 
 
     public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree) {
@@ -33,6 +43,13 @@ public class User {
         this.interestOne = interestOne;
         this.interestTwo = interestTwo;
         this.interestThree = interestThree;
+
+        Date d1 = Calendar.getInstance().getTime();
+        Date d2 = birthdate;
+
+        this.age = ((d1.getTime()-d2.getTime())/(1000*60*60*24*365));
+
+
     }
 
     @Override
@@ -45,6 +62,31 @@ public class User {
                 ", gender='" + gender +
                 ", preference='" + genderPreference;
 
+    }
+
+    public void setAge() {
+
+        LocalDate today = LocalDate.now();
+        String str = birthdate.toString();
+        //System.out.println(str);
+        String[] stra = str.split("-");
+
+        LocalDate birthday = LocalDate.of(Integer.parseInt(stra[0]), Integer.parseInt(stra[1]), Integer.parseInt(stra[2]));
+        //System.out.println(birthday);
+
+        Period p = Period.between(birthday, today);
+
+        //Now access the values as below
+        //System.out.println(p.getDays());
+        //System.out.println(p.getMonths());
+        //System.out.println(p.getYears());
+
+
+       this.age=p.getYears();
+    }
+
+    public long getAge() {
+        return age;
     }
 
     public Blob getImage() {

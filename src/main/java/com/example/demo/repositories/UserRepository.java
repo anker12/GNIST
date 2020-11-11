@@ -5,6 +5,7 @@ import com.example.demo.models.User;
 
 import java.io.*;
 import java.sql.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -240,15 +241,33 @@ public class UserRepository {
     }
 
     // LIST POTENTIAL MATCHES
-    public List<User> potentialMatches(String genderPreference, String gender){
+    public List<User> potentialMatches(String genderPreference, String gender, String username) {
         ArrayList<User> all = (ArrayList<User>) findAllUsers();
         ArrayList<User> pot = new ArrayList<>();
 
 
         for(int i = 0; i<all.size();i++){
-            if(all.get(i).getGender().equals(genderPreference) && all.get(i).getGenderPreference().equals(gender)){
-                pot.add(all.get(i));
+            if(!all.get(i).getUsername().equals(username)) {
+                all.get(i).setAge();
+                if (all.get(i).getGender().equals(genderPreference) && all.get(i).getGenderPreference().equals(gender)) {
+                    pot.add(all.get(i));
+                }
+
+                if (all.get(i).getGenderPreference().equals("both") && all.get(i).getGender().equals(genderPreference)) {
+                    pot.add(all.get(i));
+                }
+
+                if (all.get(i).getGenderPreference().equals(gender) && genderPreference.equals("both")) {
+                    pot.add(all.get(i));
+                }
+                if (all.get(i).getGenderPreference().equals("both") && genderPreference.equals("both")) {
+                    pot.add(all.get(i));
+                }
+
+
             }
+
+
 
         }
 

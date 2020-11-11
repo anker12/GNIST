@@ -58,13 +58,15 @@ public class Controller {
         }
         else {
 
-            users.getImageFromUsername(whosLoggedIn.getUsername());
+            //users.getImageFromUsername(whosLoggedIn.getUsername());
 
             System.out.println(whosLoggedIn.getUsername());
             System.out.println(whosLoggedIn.getImage());
-            System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender()));
+            System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
+
 
             model.addAttribute("imagePath", whosLoggedIn.getUsername()+".jpeg");
+            model.addAttribute("users",users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
 
 
             return "loggedin";
