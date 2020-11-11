@@ -97,7 +97,7 @@ public class Controller {
         String firstName = dataFromForm.getParameter("firstName");
         String lastName = dataFromForm.getParameter("lastName");
         String birthdateStr = dataFromForm.getParameter("birthdate");
-        // birthdate conversion and to be sure program doesnt crash if leaved empty in form
+        // birthdate conversion and to be sure program doesnt crash if left empty in form
         Date birthdate;
         if(!birthdateStr.equals("")){birthdate = Date.valueOf(birthdateStr);}
         else{birthdate = null;}
