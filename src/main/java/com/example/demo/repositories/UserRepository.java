@@ -2,18 +2,11 @@ package com.example.demo.repositories;
 
 
 import com.example.demo.models.User;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserRepository {
@@ -199,16 +192,68 @@ public class UserRepository {
 
             ps.executeUpdate();
 
-
+            getImageFromUsername(username);
             return "redirect:/profil";
 
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("jeff");
             return null;
         }
 
+
+    }
+
+    //GET IMAGE
+    public void getImageFromUsername(String username){
+        try {
+            PreparedStatement ps2 = establishConnection().prepareStatement("select photo from users where (username=?)");
+            ps2.setString(1, username);
+
+            ResultSet rs = ps2.executeQuery();
+
+
+            File image = new File("src/main/resources/static/images/"+username+".jpeg");
+            FileOutputStream output = new FileOutputStream(image);
+
+            if(rs.next()){
+                InputStream input = rs.getBinaryStream("photo");
+
+                byte[] buffer = new byte[1024];
+                while(input.read(buffer) >0){
+                    output.write(buffer);
+                }
+
+            }
+
+
+
+
+
+        } catch (SQLException | FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    // LIST POTENTIAL MATCHES
+    public List<User> potentialMatches(String genderPreference, String gender){
+        ArrayList<User> all = (ArrayList<User>) findAllUsers();
+        ArrayList<User> pot = new ArrayList<>();
+
+
+        for(int i = 0; i<all.size();i++){
+            if(all.get(i).getGender().equals(genderPreference) && all.get(i).getGenderPreference().equals(gender)){
+                pot.add(all.get(i));
+            }
+
+        }
+
+
+        return pot;
     }
 
 

@@ -4,6 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.Login;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,13 +52,21 @@ public class Controller {
     }
 
     @GetMapping("/loggedin")
-    public String loggedin(){
+    public String loggedin(Model model){
         if(!loggedIn){
             return "redirect:/";
         }
         else {
+
+            users.getImageFromUsername(whosLoggedIn.getUsername());
+
             System.out.println(whosLoggedIn.getUsername());
             System.out.println(whosLoggedIn.getImage());
+            System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender()));
+
+            model.addAttribute("imagePath", whosLoggedIn.getUsername()+".jpeg");
+
+
             return "loggedin";
         }
     }
@@ -131,6 +140,7 @@ public class Controller {
         return users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference, phonenumber,comment,interestOne,interestTwo,interestThree);
     }
 
+    // UPLOAD IMAGE
     @PostMapping("/uploadBillede")
     public String uploadPhoto(@RequestParam("img") MultipartFile img) throws IOException, SQLException {
         byte[] fileAsBytes = img.getBytes();
@@ -138,6 +148,16 @@ public class Controller {
 
 
         return users.uploadPhotoToDatabase(fileAsBlob,whosLoggedIn.getUsername());
+    }
+
+    // SAVE IMAGE TO SYSTEM
+    @GetMapping("/save")
+    public String savePhoto(){
+
+        users.getImageFromUsername(whosLoggedIn.getUsername());
+
+
+        return"redirect:/profil";
     }
 
 
