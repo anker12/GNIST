@@ -11,8 +11,14 @@ public class User {
     private String password;
     private String gender;
     private String genderPreference;
+    private String phonenumber;
+    private String comment;
+    private String interestOne;
+    private String interestTwo;
+    private String interestThree;
 
-    public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference) {
+
+    public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -20,6 +26,11 @@ public class User {
         this.password = password;
         this.gender = gender;
         this.genderPreference = genderPreference;
+        this.phonenumber = phonenumber;
+        this.comment = comment;
+        this.interestOne = interestOne;
+        this.interestTwo = interestTwo;
+        this.interestThree = interestThree;
     }
 
     @Override

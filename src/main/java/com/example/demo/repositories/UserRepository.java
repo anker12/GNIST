@@ -39,7 +39,17 @@ public class UserRepository {
                         //gender
                         rs.getString(7),
                         //gender preference
-                        rs.getString(8)
+                        rs.getString(8),
+                        //phonenumber
+                        rs.getString(9),
+                        //comment
+                        rs.getString(10),
+                        //interest 1
+                        rs.getString(11),
+                        //interest 2
+                        rs.getString(12),
+                        //interest 3
+                        rs.getString(13)
                 );
                 allUsers.add(temp);
             }
@@ -82,14 +92,14 @@ public class UserRepository {
     }
 
     // CREATE USER METHOD
-    public String createUserInDatabase(String username, String password, String passwordre, String firstName, String lastName, Date birthdate, String gender, String genderPreference){
+    public String createUserInDatabase(String username, String password, String passwordre, String firstName, String lastName, Date birthdate, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree){
         //checks if all fields has been filled
         if(!username.equals("") && !password.equals("") && !firstName.equals("") && !lastName.equals("") &&birthdate!=null&&!gender.equals("Vælg her")&&!genderPreference.equals("Vælg her")){
             //checks if the password in both fields match
             if(password.equals(passwordre)){
                 try{
-                    PreparedStatement ps = establishConnection().prepareStatement("INSERT INTO users (firstName, lastName, username, password, birthdate, gender, preference)" +
-                        " VALUES (?, ?, ?, ?, ?, ?, ?);");
+                    PreparedStatement ps = establishConnection().prepareStatement("INSERT INTO users (firstName, lastName, username, password, birthdate, gender, preference, phonenumber, comment, interestOne, interestTwo, interestThree)" +
+                        " VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);");
                     ps.setString(1,firstName);
                     ps.setString(2,lastName);
                     ps.setString(3,username);
@@ -97,6 +107,11 @@ public class UserRepository {
                     ps.setDate(5,birthdate);
                     ps.setString(6,gender);
                     ps.setString(7,genderPreference);
+                    ps.setString(8,phonenumber);
+                    ps.setString(9,comment);
+                    ps.setString(10,interestOne);
+                    ps.setString(11,interestTwo);
+                    ps.setString(12,interestThree);
 
                     ps.executeUpdate();
 

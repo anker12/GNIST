@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #778899">
+<body style="background-color: #333">
 
     <div class="createU-div">
         <a href="/" style="text-decoration: none; color: #505050;"><p class="regform-title">< Tilbage til login</p></a>
@@ -78,6 +78,53 @@
                     <option value="both">Begge</option>
                 </select>
             </div>
+
+            <!-- PHONE NUMBER -->
+            <div class="username">
+                <p class="regform-title">Skriv dit telefon nummer: </p>
+                <input type="text" placeholder="Tlf.nr." name="phonenumber" class="formbar">
+            </div>
+
+            <!-- Comment -->
+            <div class="username" style="border: none">
+                <p class="regform-title">Skriv meget kort om dig selv: </p>
+                <textarea type="text" placeholder="Kort beskrivelse af dig" name="comment" class="formbar" ></textarea>
+            </div>
+
+            <!-- Interest 1 -->
+            <div class="username" style="border: none;">
+                <label for="interest1" class="regform-title">Hvad vil du helst på en regnvejrsdag? </label>
+                <select name="interest1" id="interest1" class="select-gender">
+                    <option value="" disabled selected hidden>Vælg her</option>
+                    <option value="1">På med regntøjet og gå en tur</option>
+                    <option value="2">Brætspil i pyjamas</option>
+                    <option value="3">Netflix under dynen</option>
+                </select>
+            </div>
+
+            <!-- Interest 2 -->
+            <div class="username" style="border: none;">
+                <label for="interest2" class="regform-title">Hvor vil du helst holde din ferie? </label>
+                <select name="interest2" id="interest2" class="select-gender">
+                    <option value="" disabled selected hidden>Vælg her</option>
+                    <option value="1">På museer rundt i verdenen</option>
+                    <option value="2">På stranden</option>
+                    <option value="3">I sneen</option>
+                </select>
+            </div>
+
+            <!-- Interest 3 -->
+            <div class="username" style="border: none;">
+                <label for="interest3" class="regform-title">Hvad er din "go to" en fredag aften? </label>
+                <select name="interest3" id="interest3" class="select-gender">
+                    <option value="" disabled selected hidden>Vælg her</option>
+                    <option value="1">I byen og feste</option>
+                    <option value="2">Rolig aften foran tv'et</option>
+                    <option value="3">Hyggelig middag med venner/familie</option>
+                </select>
+            </div>
+
+
             <button class="signin-btn" type="submit">OPRET</button>
 
 

@@ -31,10 +31,15 @@ CREATE TABLE `users` (
   `birthdate` date NOT NULL,
   `gender` varchar(45) NOT NULL,
   `preference` varchar(45) NOT NULL,
+  `phonenumber` varchar(45) NOT NULL,
+  `comment` varchar(300) NOT NULL,
+  `interestOne` varchar(45) NOT NULL,
+  `interestTwo` varchar(45) NOT NULL,
+  `interestThree` varchar(45) NOT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `userid_UNIQUE` (`userid`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +48,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Tobias','Sørensen','anker12','1234','2000-05-02','male','female'),(2,'Emil','Sørensen','ankerstjerne12','12345','1998-01-12','male','female'),(3,'Tobias','Sørensen','paramyr2','1234','2000-05-02','male','female'),(4,'Emil','Sørensen','paramyr','1234','1998-01-12','male','female'),(5,'Maria','Lastnamehehe','woofley','123','2000-05-02','female','male'),(8,'Nadine','Gerr','ofxy','123','1998-02-12','female','male'),(9,'Felix','Kjellberg','poopy','12345','1994-08-17','male','female'),(10,'test','test','test','test','2000-11-11','male','female'),(12,'hmmtest','gmmtest','test2','123','2000-11-12','female','female');
+INSERT INTO `users` VALUES (1,'Tobias','Sørensen','anker12','1234','2000-05-02','male','female','','','','',''),(2,'Emil','Sørensen','ankerstjerne12','12345','1998-01-12','male','female','','','','',''),(3,'Tobias','Sørensen','paramyr2','1234','2000-05-02','male','female','','','','',''),(4,'Emil','Sørensen','paramyr','1234','1998-01-12','male','female','','','','',''),(5,'Maria','Lastnamehehe','woofley','123','2000-05-02','female','male','','','','',''),(8,'Nadine','Gerr','ofxy','123','1998-02-12','female','male','','','','',''),(9,'Felix','Kjellberg','poopy','12345','1994-08-17','male','female','','','','',''),(14,'Tobias','Sørensen','tobi2000','tobi','2000-05-02','male','female','21554455','Jeg er en rolig fyr, kan godt lide at spille computer lol','3','2','both');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09 10:53:20
+-- Dump completed on 2020-11-11  2:03:56

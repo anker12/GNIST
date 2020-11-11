@@ -99,12 +99,17 @@ public class Controller {
 
         String gender = dataFromForm.getParameter("gender");
         String genderPreference = dataFromForm.getParameter("genderPreference");
+        String phonenumber = dataFromForm.getParameter("phonenumber");
+        String comment = dataFromForm.getParameter("comment");
+        String interestOne = dataFromForm.getParameter("interest1");
+        String interestTwo = dataFromForm.getParameter("interest2");
+        String interestThree = dataFromForm.getParameter("interest3");
 
         assert password != null;
 
         //String tmpRtnStr = users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference);
         //System.out.println(tmpRtnStr);
-        return users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference);
+        return users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference, phonenumber,comment,interestOne,interestTwo,interestThree);
     }
 
 
