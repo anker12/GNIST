@@ -45,6 +45,46 @@ public class User {
 
     }
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getInterestOne() {
+        return interestOne;
+    }
+
+    public void setInterestOne(String interestOne) {
+        this.interestOne = interestOne;
+    }
+
+    public String getInterestTwo() {
+        return interestTwo;
+    }
+
+    public void setInterestTwo(String interestTwo) {
+        this.interestTwo = interestTwo;
+    }
+
+    public String getInterestThree() {
+        return interestThree;
+    }
+
+    public void setInterestThree(String interestThree) {
+        this.interestThree = interestThree;
+    }
+
     public String getGender() {
         return gender;
     }
