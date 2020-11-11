@@ -19,6 +19,7 @@ public class Controller {
 
     private boolean loggedIn = false;
     UserRepository users = new UserRepository();
+    User whosLoggedIn = null;
 
 
     @GetMapping("/")
@@ -44,8 +45,10 @@ public class Controller {
         if(!loggedIn){
             return "redirect:/";
         }
-        else
+        else {
+            System.out.println(whosLoggedIn.getFirstName());
             return "loggedin";
+        }
     }
 
 
@@ -77,6 +80,8 @@ public class Controller {
         Login ln = new Login(u,p);
         if(ln.verifyLogin().equals("redirect:/loggedin")){
             loggedIn=true;
+            whosLoggedIn=users.findSingleUser(u);
+            System.out.println("Bruger: " + whosLoggedIn + " er logget ind");
         }
         //System.out.println(u);
         //System.out.println(ln.verifyLogin());
