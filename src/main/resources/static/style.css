@@ -32,6 +32,17 @@ li a:hover {
     text-decoration: none;
     color: white;
 }
+#navbar{
+    overflow:hidden;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+
 
 
 

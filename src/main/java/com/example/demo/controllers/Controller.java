@@ -63,6 +63,7 @@ public class Controller {
             System.out.println(whosLoggedIn.getUsername());
             System.out.println(whosLoggedIn.getImage());
             System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
+            System.out.println("favoritter: "+users.getFavs(whosLoggedIn.getUsername()));
 
 
             model.addAttribute("imagePath", whosLoggedIn.getUsername()+".jpeg");
@@ -74,8 +75,24 @@ public class Controller {
     }
     @GetMapping("/profil")
     public String profil(){
+        if(!loggedIn){
+            return "redirect:/";
+        }else{
+            return "profil";
+        }
+    }
 
-        return "profil";
+    @GetMapping("/favoritter")
+    public String favourites(Model model){
+        if(!loggedIn){
+            return "redirect:/";
+        }else {
+            model.addAttribute("imagePath", whosLoggedIn.getUsername() + ".jpeg");
+            model.addAttribute("users", users.getFavs(whosLoggedIn.getUsername()));
+
+
+            return "favoritter";
+        }
     }
 
 
@@ -135,6 +152,7 @@ public class Controller {
         String interestThree = dataFromForm.getParameter("interest3");
 
 
+
         assert password != null;
 
         //String tmpRtnStr = users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference);
@@ -162,6 +180,16 @@ public class Controller {
         return"redirect:/profil";
     }
 
+    //ADD TO FAVOURITES
+    @GetMapping("/addfav")
+    public String addToFavs(WebRequest dataFromForm){
+        System.out.println("SÅ JEG KAN SE DET: "+dataFromForm.getParameter("userN"));
+
+        users.setFavs(whosLoggedIn.getUsername(),dataFromForm.getParameter("userN"));
+
+
+        return "redirect:/loggedin";
+    }
 
 
 

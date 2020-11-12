@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.SimpleTimeZone;
@@ -28,6 +29,7 @@ public class User {
     private String interestThree;
     private Blob image;
     private long age;
+    private String favs;
 
 
     public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree) {
@@ -62,6 +64,15 @@ public class User {
                 ", gender='" + gender +
                 ", preference='" + genderPreference;
 
+    }
+
+
+    public String getFavs() {
+        return favs;
+    }
+
+    public void setFavs(String favs) {
+        this.favs = favs;
     }
 
     public void setAge() {

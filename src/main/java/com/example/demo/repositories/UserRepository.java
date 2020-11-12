@@ -55,6 +55,7 @@ public class UserRepository {
                         rs.getString(13)
                 );
                 temp.setImage(rs.getBlob(14));
+                temp.setFavs(rs.getString(15));
 
             }
 
@@ -273,6 +274,48 @@ public class UserRepository {
 
 
         return pot;
+    }
+
+    //SET FAVOURITES
+    public void setFavs(String usernameLoggedin, String usernameToAdd){
+        User tmpu= findSingleUser(usernameLoggedin);
+        tmpu.setFavs(tmpu.getFavs()+","+usernameToAdd);
+
+        try {
+            PreparedStatement ps = establishConnection().prepareStatement("UPDATE `users` SET `favourites` = ? WHERE (`username` = ?);");
+
+            ps.setString(1,tmpu.getFavs());
+            ps.setString(2,usernameLoggedin);
+
+            ps.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+
+
+    //GET FAVOURITES
+    public ArrayList<User> getFavs(String username){
+        ArrayList<User> favs = new ArrayList<>();
+
+        User tmpu= findSingleUser(username);
+        String tmpstr = tmpu.getFavs();
+        if(tmpstr!=null) {
+            String[] stra = tmpstr.split(",");
+
+            for (int i = 1; i < stra.length; i++) {
+                favs.add(findSingleUser(stra[i]));
+                favs.get(i-1).setAge();
+            }
+        }
+
+        return favs;
     }
 
 
