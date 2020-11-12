@@ -240,7 +240,7 @@ public class UserRepository {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            return null;
+            return "redirect:/profil";
         }
 
 
