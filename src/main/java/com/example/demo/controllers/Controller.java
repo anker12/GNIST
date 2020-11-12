@@ -57,28 +57,59 @@ public class Controller {
             return "redirect:/";
         }
         else {
+            if(whosLoggedIn.getAdmin().equals("admin")){
+                return "redirect:/adminAdgang";
+            }else {
 
-            //users.getImageFromUsername(whosLoggedIn.getUsername());
+                //users.getImageFromUsername(whosLoggedIn.getUsername());
 
-            System.out.println(whosLoggedIn.getUsername());
-            System.out.println(whosLoggedIn.getImage());
-            System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
-            System.out.println("favoritter: "+users.getFavs(whosLoggedIn.getUsername()));
-
-
-            model.addAttribute("imagePath", whosLoggedIn.getUsername()+".jpeg");
-            model.addAttribute("users",users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
+                System.out.println(whosLoggedIn.getUsername());
+                System.out.println(whosLoggedIn.getImage());
+                System.out.println(users.potentialMatches(whosLoggedIn.getGenderPreference(), whosLoggedIn.getGender(), whosLoggedIn.getUsername()));
+                System.out.println("favoritter: " + users.getFavs(whosLoggedIn.getUsername()));
 
 
-            return "loggedin";
+                model.addAttribute("imagePath", whosLoggedIn.getUsername() + ".jpeg");
+                model.addAttribute("users", users.potentialMatches(whosLoggedIn.getGenderPreference(), whosLoggedIn.getGender(), whosLoggedIn.getUsername()));
+
+
+                return "loggedin";
+            }
         }
     }
+    @GetMapping("/adminAdgang")
+    public String adminAccess(Model model){
+        if(loggedIn) {
+            if (whosLoggedIn.getAdmin().equals("admin")) {
+                model.addAttribute("allusers", users.findAllUsers());
+                return "admin-adgang";
+            } else {
+                loggedIn = false;
+                return "redirect:/";
+            }
+        }else {
+            loggedIn = false;
+            return "redirect:/";
+        }
+
+    }
+
+
     @GetMapping("/profil")
-    public String profil(){
+    public String profil(Model model){
         if(!loggedIn){
             return "redirect:/";
         }else{
-            return "profil";
+            if(whosLoggedIn.getAdmin().equals("admin")){
+                return "redirect:/adminAdgang";
+            }else {
+
+                model.addAttribute("imagePath", whosLoggedIn.getUsername() + ".jpeg");
+                model.addAttribute("singleUser", users.findSingleUser(whosLoggedIn.getUsername()));
+
+
+                return "profil";
+            }
         }
     }
 
@@ -87,11 +118,16 @@ public class Controller {
         if(!loggedIn){
             return "redirect:/";
         }else {
-            model.addAttribute("imagePath", whosLoggedIn.getUsername() + ".jpeg");
-            model.addAttribute("users", users.getFavs(whosLoggedIn.getUsername()));
+            if(whosLoggedIn.getAdmin().equals("admin")){
+                return "redirect:/adminAdgang";
+            }else {
+
+                model.addAttribute("imagePath", whosLoggedIn.getUsername() + ".jpeg");
+                model.addAttribute("users", users.getFavs(whosLoggedIn.getUsername()));
 
 
-            return "favoritter";
+                return "favoritter";
+            }
         }
     }
 
@@ -103,7 +139,6 @@ public class Controller {
         return "indexWrongPW";
     }
 
-    //TODO fix
 
     @GetMapping("/obPWNotMatching")
     public String createPWNotMatching(){
@@ -111,6 +146,17 @@ public class Controller {
     }
 
     // "functions"
+
+    // DELETE USER
+
+    @GetMapping("/deluser")
+    public String deleteUser(WebRequest dataFromForm){
+        //System.out.println("SÅ JEG KAN SE DET: "+dataFromForm.getParameter("userN"));
+        users.deleteUser(dataFromForm.getParameter("userN"));
+
+        return "redirect:/adminAdgang";
+    }
+
 
     //login
     @GetMapping("/login")
@@ -159,6 +205,26 @@ public class Controller {
         //System.out.println(tmpRtnStr);
         return users.createUserInDatabase(username,password,passwordre,firstName,lastName,birthdate,gender,genderPreference, phonenumber,comment,interestOne,interestTwo,interestThree);
     }
+
+    //UPDATE INF
+    @GetMapping("/opdaterInfo")
+    public String updateInfo(WebRequest dataFromForm, Model model){
+        String username = whosLoggedIn.getUsername();
+        String comment = dataFromForm.getParameter("comment");
+        String phonenumber = dataFromForm.getParameter("phonenumber");
+        String password = dataFromForm.getParameter("password");
+        String passwordre = dataFromForm.getParameter("passwordre");
+
+        model.addAttribute("imagePath", whosLoggedIn.getUsername()+".jpeg");
+        model.addAttribute("users",users.potentialMatches(whosLoggedIn.getGenderPreference(),whosLoggedIn.getGender(),whosLoggedIn.getUsername()));
+
+        //users.updateUserInDatabase(username,comment,phonenumber,password,passwordre);
+
+
+        return users.updateUserInDatabase(username,comment,phonenumber,password,passwordre);
+
+    }
+
 
     // UPLOAD IMAGE
     @PostMapping("/uploadBillede")

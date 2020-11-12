@@ -23,13 +23,51 @@
 
 
 <div style="width: 100%; height: 50px;"></div>
-<div class="createU-div" style="border:none;">
+<div class="createU-div" style="border:none; margin-top:0;">
+    <div class="title">Upload et billede eller erstat dit eksisterende billede</div>
     <form class="form" action="/uploadBillede" method="POST" enctype="multipart/form-data">
-        <div class="username" style="border: none">
+        <div class="row" style="border: none">
+            <div class="col">
+            <img th:src="@{images/{image}.jpeg(image=${singleUser.username})}" style="width: 200px;height: 200px; border-radius:50%; border: 4px solid #E7745B">
+            </div>
+            <div class="col">
             <label for="img" class="regform-title">Vælg dit bedste billede: </label>
-            <input type="file" id="img" name="img" accept="image/*" required>
+            <br>
+            <input type="file" id="img" name="img" accept="image/*" required style="padding-left:0; margin-bottom: 8px;">
+
+                <button class="signin-btn" style="width:150px; margin:0px;" type="submit">UPLOAD</button>
+            </div>
         </div>
-        <button class="signin-btn" style="width:150px; float:left;" type="submit">UPLOAD</button>
+    </form>
+    <br>
+    <div class="title">Opdater dine oplysninger</div>
+    <form class="form" action="/opdaterInfo">
+        <!-- Comment -->
+        <div class="username" style="border: none">
+            <p class="regform-title">Skriv meget kort om dig selv: </p>
+            <textarea type="text" placeholder="Kort beskrivelse af dig" name="comment" class="formbar" th:text="${singleUser.comment}"></textarea>
+        </div>
+
+        <!-- PHONE NUMBER -->
+        <div class="username">
+            <p class="regform-title">Skriv dit telefon nummer: </p>
+            <input type="text" placeholder="Tlf.nr." name="phonenumber" class="formbar" required th:attr="value=${singleUser.phonenumber}">
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="password">
+            <p class="regform-title">Skift dit password: </p>
+            <input type="password" placeholder="Password" id="password" name="password" class="formbar" required th:attr="value=${singleUser.password}">
+        </div>
+
+        <!-- RE PASSWORD -->
+        <div class="password">
+            <p class="regform-title">Skriv dit nye password igen: </p>
+            <input type="password" placeholder="Password" id="passwordre" name="passwordre" class="formbar" required th:attr="value=${singleUser.password}">
+        </div>
+
+        <button class="signin-btn" style="" type="submit">OPDATER OPLYSNINGER</button>
+
     </form>
 </div>
 

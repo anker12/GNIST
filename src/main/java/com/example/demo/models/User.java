@@ -30,6 +30,7 @@ public class User {
     private Blob image;
     private long age;
     private String favs;
+    private String admin = "";
 
 
     public User(String firstName, String lastName, Date birthdate, String username, String password, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree) {
@@ -62,10 +63,18 @@ public class User {
                 ", birthdate=" + birthdate +
                 ", username='" + username +
                 ", gender='" + gender +
-                ", preference='" + genderPreference;
+                ", preference='" + genderPreference +
+                ", phonenumber='" + phonenumber;
 
     }
 
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
+    public String getAdmin() {
+        return admin;
+    }
 
     public String getFavs() {
         return favs;

@@ -57,6 +57,10 @@ public class UserRepository {
                 temp.setImage(rs.getBlob(14));
                 temp.setFavs(rs.getString(15));
 
+                if(rs.getString(16)!=null){
+                    temp.setAdmin(rs.getString(16));
+                }
+
             }
 
         }
@@ -106,7 +110,11 @@ public class UserRepository {
                         //interest 3
                         rs.getString(13)
                 );
-                allUsers.add(temp);
+                temp.setAge();
+                if(rs.getString(16)==null){
+                    allUsers.add(temp);
+                }
+
             }
 
         } catch (SQLException e){
@@ -146,6 +154,9 @@ public class UserRepository {
         return booltmp;
     }
 
+    // IS ADMIN
+
+
     // CREATE USER METHOD
     public String createUserInDatabase(String username, String password, String passwordre, String firstName, String lastName, Date birthdate, String gender, String genderPreference, String phonenumber, String comment, String interestOne, String interestTwo, String interestThree){
     //checks if the password in both fields match
@@ -182,6 +193,35 @@ public class UserRepository {
         }
 
 
+    }
+
+    //UPDATE USER IN DATABASE
+    public String updateUserInDatabase(String username,String comment, String phonenumber, String password, String passwordre){
+        if(password.equals(passwordre)){
+            try {
+                PreparedStatement ps = establishConnection().prepareStatement("UPDATE `datingsys`.`users` SET `password` = ?, `phonenumber` = ?, `comment` = ? WHERE (`username` = ?);");
+
+                ps.setString(4,username);
+                ps.setString(1,password);
+                ps.setString(2,phonenumber);
+                ps.setString(3,comment);
+
+                ps.executeUpdate();
+
+
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+
+
+        } else {
+            System.out.println("password ikke ens");
+            return "redirect:/profil";
+        }
+
+
+        return "redirect:/profil";
     }
 
     //UPLOAD PHOTO METHOD
@@ -316,6 +356,25 @@ public class UserRepository {
         }
 
         return favs;
+    }
+
+    //DELETE USER
+    public void deleteUser(String username){
+        try {
+            PreparedStatement ps = establishConnection().prepareStatement("DELETE FROM `datingsys`.`users` WHERE (`username` = ?);");
+
+            ps.setString(1,username);
+
+            ps.executeUpdate();
+
+            File f = new File("src/main/resources/static/images/"+username+".jpeg");
+            f.delete();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
